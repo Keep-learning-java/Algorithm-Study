@@ -15,7 +15,7 @@
     * LeetCode: [https://leetcode.com/](https://leetcode.com/)
     * Programmers: [https://programmers.co.kr/learn/challenges](https://programmers.co.kr/learn/challenges)
 
-### 📝 Study Rule
+## 📝 Study Rule
 * 문제 풀이
   * 각자 해당 범위에 대한 알고리즘 문제를 풀이한다.
   * 문제를 풀 때 발생한 issue를 **Issues**에 기록한다.
@@ -38,7 +38,7 @@
     * ex) sangryeol/Week_1/A+B
 
 
-### 📒 Collaborator
+## 📒 Collaborator
 <p>
 <a href="https://github.com/sonsy0929">
   <img src="https://github.com/sonsy0929.png" width="100">
