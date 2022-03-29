@@ -42,7 +42,10 @@
 <p>
 <a href="https://github.com/sonsy0929">
   <img src="https://github.com/sonsy0929.png" width="100">
-  </a>
+</a>
 <a href="https://github.com/hyejinhong">
   <img src="https://github.com/hyejinhong.png" width="100">
+</a>
+<a href="https://github.com/leedjik">
+  <img src="https://github.com/leedjik.png" width="100">
 </a>
