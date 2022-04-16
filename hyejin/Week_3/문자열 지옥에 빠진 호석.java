@@ -13,6 +13,8 @@ public class BOJ_20166 {
     static int[] dx = { 0, 0, -1, 1, -1, 1, -1, 1 };
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
         StringTokenizer stk = new StringTokenizer(br.readLine());
 
         n = Integer.parseInt(stk.nextToken());
@@ -28,6 +30,10 @@ public class BOJ_20166 {
 
         for(int i=0; i<k; i++) {
             String destination = br.readLine();
+            if(hashMap.containsKey(destination)) {
+                System.out.println(hashMap.get(destination));
+                continue;
+            }
             hashMap.put(destination, 0);
 
             // 모든 칸에서 다 시작해봄
@@ -40,11 +46,11 @@ public class BOJ_20166 {
                 }
             }
 
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
             bw.write(hashMap.get(destination) + "\n");
             bw.flush();
-            bw.close();
+
         }
+        bw.close();
     }
 
     public static void dfs(String destination, String now, int y, int x) {
@@ -74,7 +80,9 @@ public class BOJ_20166 {
             else if(nx >= m)
                 nx = 0;
 
-            dfs(destination, now+map[ny][nx], ny, nx);
+            // 다음 글자로 이동해도 되는지 판단해보자
+            if(destination.charAt(now.length()) == map[ny][nx])
+                dfs(destination, now+map[ny][nx], ny, nx);
         }
     }
 }
