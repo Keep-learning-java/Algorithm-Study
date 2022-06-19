@@ -26,8 +26,8 @@ public class Boj_22254_공정_컨설턴트_호석 {
             for (int i = 0; i < orderCount; i++) {
                 orders.add(new Order(Integer.parseInt(st.nextToken())));
             }
-            orders.sort((o1, o2) -> o2.getTime() - o1.getTime());
             int finalAnswer = orderCount;
+
             int minFactoryCount = 1;
             int maxFactoryCount = orderCount;
             int mid = (minFactoryCount + maxFactoryCount) / 2;
