@@ -36,14 +36,20 @@ public class Boj_16719_ZOAC {
 
     private void findLowestAsciiFromCurrentPosition(int index) {
         PriorityQueue<PriorityCharacter> pqFromIndex = new PriorityQueue<>((o1, o2) -> {
-            return o1.getAsciiCodeValue() - o2.getAsciiCodeValue();
+            if(o1.getAsciiCodeValue() == o2.getAsciiCodeValue()){
+                return o1.getOriginalPosition() - o2.getOriginalPosition();
+            }else {
+                return o1.getAsciiCodeValue() - o2.getAsciiCodeValue();
+            }
         });
         for (int i = index; i < characters.size(); i++) {
-            pqFromIndex.offer(characters.get(i));
+            if (isChecked[i] == false) {
+                pqFromIndex.offer(characters.get(i));
+            }
         }
         while (!pqFromIndex.isEmpty()) {
             PriorityCharacter lowestAscii = pqFromIndex.poll();
-            int originalPosition = lowestAscii.getOriginalPriority();
+            int originalPosition = lowestAscii.getOriginalPosition();
             if (isChecked[originalPosition] == false) {
                 isChecked[originalPosition] = true;
                 storeCharacter(originalPosition);
@@ -55,7 +61,7 @@ public class Boj_16719_ZOAC {
     private void storeCharacter(int index) {
         outputArray.add(characters.get(index));
         outputArray.sort((o1, o2) -> {
-            return o1.getOriginalPriority() - o2.getOriginalPriority();
+            return o1.getOriginalPosition() - o2.getOriginalPosition();
         });
         lastOutputValue.delete(0, lastOutputValue.length());
         for (PriorityCharacter priorityCharacter : outputArray) {
@@ -68,15 +74,15 @@ public class Boj_16719_ZOAC {
 class PriorityCharacter {
 
     private final int asciiCodeValue;
-    private final int originalPriority;
+    private final int originalPosition;
 
-    public PriorityCharacter(int asciiCodeValue, int originalPriority) {
+    public PriorityCharacter(int asciiCodeValue, int originalPosition) {
         this.asciiCodeValue = asciiCodeValue;
-        this.originalPriority = originalPriority;
+        this.originalPosition = originalPosition;
     }
 
-    public int getOriginalPriority() {
-        return originalPriority;
+    public int getOriginalPosition() {
+        return originalPosition;
     }
 
     public int getAsciiCodeValue() {
