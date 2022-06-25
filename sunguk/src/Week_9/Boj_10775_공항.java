@@ -2,28 +2,26 @@ package Week_9;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.TreeSet;
 
 public class Boj_10775_공항 {
 
-    int[] highestNumberGates;
-    boolean[] isChecked;
+    TreeSet<Integer> possibleGates = new TreeSet<>();
 
     public void run() {
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             int numberOfGates = Integer.parseInt(br.readLine());
             int numberOfAirplane = Integer.parseInt(br.readLine());
-            highestNumberGates = new int[numberOfGates + 1];
-            isChecked = new boolean[numberOfGates + 1];
-            for (int i = 0; i < highestNumberGates.length; i++) {
-                highestNumberGates[i] = i;
+            for (int i = 0; i < numberOfGates; i++) {
+                possibleGates.add(i + 1);
             }
             int answer = 0;
             while (numberOfAirplane-- > 0) {
                 int airplaneDockableMaxGateNumber = Integer.parseInt(br.readLine());
-                int highestGateNumber = findHighestNumberGate(airplaneDockableMaxGateNumber);
-                if (0 < highestGateNumber && highestGateNumber <= airplaneDockableMaxGateNumber) {
-                    isChecked[highestGateNumber] = true;
+                Integer possibleMaxGateNumber = possibleGates.floor(airplaneDockableMaxGateNumber);
+                if (possibleMaxGateNumber != null) {
+                    possibleGates.remove(possibleMaxGateNumber);
                     answer++;
                 } else {
                     break;
@@ -34,13 +32,4 @@ public class Boj_10775_공항 {
             e.printStackTrace();
         }
     }
-
-    private int findHighestNumberGate(int gateNumber) {
-        if (gateNumber == highestNumberGates[gateNumber] && !isChecked[gateNumber]) {
-            return gateNumber;
-        } else {
-            return highestNumberGates[gateNumber] = findHighestNumberGate(gateNumber - 1);
-        }
-    }
-
 }
